@@ -27,3 +27,9 @@ jobs:
           cache: maven
       - name: Build with Maven Wrapper
         run: ./mvnw -B package
+      - name: Notify Appsurify
+        run: |
+          curl -X POST "https://api.appsurify.com/test-results" \
+          -H "Authorization: Bearer MTA5OmcyRGRUUWFHM3NSTThCV0hKMGZXVV9HZFNYeFk3ZHNmVE1ST1M4ZktIWUE" \
+          -d @target/surefire-reports/junitreports/TEST-*.xml
+ 
